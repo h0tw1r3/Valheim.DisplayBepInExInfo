@@ -13,7 +13,7 @@ namespace Valheim.DisplayBepInExInfo
             if ((eventArgs.Level & DisplayInfoPlugin.LogLevels.Value) == 0)
                 return;
             if (Console.instance)
-                Console.instance.Print(eventArgs.ToString());
+                Console.instance.Print(eventArgs.ToString().TrimEnd());
         }
     }
 }
