@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net462</TargetFramework>
+        <TargetFramework>net48</TargetFramework>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <Version>2.1.0</Version>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
@@ -17,45 +17,62 @@
       <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
+    <PropertyGroup>
+        <TempDir>$([System.IO.Path]::GetTempPath())</TempDir>
+    </PropertyGroup>
+
     <ItemGroup>
-        <PackageReference Include="BepInEx.Analyzers" Version="1.0.4">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-        <PackageReference Include="BepInEx.Core" Version="5.4.21" IncludeAssets="compile" />
-        <PackageReference Include="Microsoft.Unity.Analyzers" Version="1.10.0">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
+        <Reference Include="0Harmony">
+            <HintPath Condition="Exists('\opt\BepInEx')">\opt\BepInEx\core\0Harmony.dll</HintPath>
+            <HintPath Condition="Exists('..\libs\BepInEx')">..\libs\BepInEx\core\0Harmony.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="BepInEx">
+            <HintPath Condition="Exists('\opt\BepInEx')">\opt\BepInEx\core\BepInEx.dll</HintPath>
+            <HintPath Condition="Exists('..\libs\BepInEx')">..\libs\BepInEx\core\BepInEx.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="BepInEx.Harmony">
+            <HintPath Condition="Exists('\opt\BepInEx')">\opt\BepInEx\core\BepInEx.Harmony.dll</HintPath>
+            <HintPath Condition="Exists('..\libs\BepInEx')">..\libs\BepInEx\core\BepInEx.Harmony.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
     </ItemGroup>
 
     <ItemGroup>
         <Reference Include="assembly_valheim">
-            <HintPath>..\lib\0.214.3\assembly_valheim_publicized.dll</HintPath>
+            <HintPath Condition="Exists('$(TempDir)assembly_valheim.public.dll')">$(TempDir)assembly_valheim.public.dll</HintPath>
+            <HintPath Condition="Exists('..\libs\valheim')">..\libs\valheim\assembly_valheim.public.dll</HintPath>
             <Private>False</Private>
         </Reference>
         <Reference Include="Unity.TextMeshPro">
-            <HintPath>..\lib\Unity.TextMeshPro.dll</HintPath>
+            <HintPath Condition="Exists('\opt\steam\libs')">\opt\steam\libs\Unity.TextMeshPro.dll</HintPath>
+            <HintPath Condition="Exists('..\libs\valheim')">..\libs\valheim\Unity.TextMeshPro.dll</HintPath>
             <Private>False</Private>
         </Reference>
-        <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-            <HintPath>..\lib\UnityEngine.dll</HintPath>
+        <Reference Include="UnityEngine">
+            <HintPath Condition="Exists('\opt\steam\libs')">\opt\steam\libs\UnityEngine.dll</HintPath>
+            <HintPath Condition="Exists('..\libs\valheim')">..\libs\valheim\UnityEngine.dll</HintPath>
             <Private>False</Private>
         </Reference>
-        <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-            <HintPath>..\lib\UnityEngine.CoreModule.dll</HintPath>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath Condition="Exists('\opt\steam\libs')">\opt\steam\libs\UnityEngine.CoreModule.dll</HintPath>
+            <HintPath Condition="Exists('..\libs\valheim')">..\libs\valheim\UnityEngine.CoreModule.dll</HintPath>
             <Private>False</Private>
         </Reference>
-        <Reference Include="UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-            <HintPath>..\lib\UnityEngine.TextRenderingModule.dll</HintPath>
+        <Reference Include="UnityEngine.TextRenderingModule">
+            <HintPath Condition="Exists('\opt\steam\libs')">\opt\steam\libs\UnityEngine.TextRenderingModule.dll</HintPath>
+            <HintPath Condition="Exists('..\libs\valheim')">..\libs\valheim\UnityEngine.TextRenderingModule.dll</HintPath>
             <Private>False</Private>
         </Reference>
-        <Reference Include="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-            <HintPath>..\lib\UnityEngine.UI.dll</HintPath>
+	<Reference Include="UnityEngine.UI">
+            <HintPath Condition="Exists('\opt\steam\libs')">\opt\steam\libs\UnityEngine.UI.dll</HintPath>
+            <HintPath Condition="Exists('..\libs\valheim')">..\libs\valheim\UnityEngine.UI.dll</HintPath>
             <Private>False</Private>
         </Reference>
-        <Reference Include="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-            <HintPath>..\lib\UnityEngine.UIModule.dll</HintPath>
+	<Reference Include="UnityEngine.UIModule">
+            <HintPath Condition="Exists('\opt\steam\libs')">\opt\steam\libs\UnityEngine.UIModule.dll</HintPath>
+            <HintPath Condition="Exists('..\libs\valheim')">..\libs\valheim\UnityEngine.UIModule.dll</HintPath>
             <Private>False</Private>
         </Reference>
     </ItemGroup>
